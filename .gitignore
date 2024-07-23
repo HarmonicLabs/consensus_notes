@@ -1,3 +1,19 @@
+# latex stuff
+_minted-main
+main-blx.bib
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*xmpi
+*.glo
+*.synctex(busy)
+*.toc
+*.xdv
+*.run.xml
+*.bbl
+
 # Logs
 logs
 *.log

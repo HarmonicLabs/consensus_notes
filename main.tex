@@ -1,0 +1,56 @@
+\documentclass{report}
+% \documentclass[12pt,a4paper,twoside,openright]{extreport}
+
+\usepackage{enumitem}
+\usepackage[
+    a4paper,
+    top=2cm,bottom=2cm,
+    outer=2cm,inner=3cm,
+    includeheadfoot
+]{geometry}
+\usepackage{graphicx}
+\usepackage{minted}
+\usepackage{subcaption}
+
+\usepackage[english]{babel}
+\selectlanguage{english}
+
+\usepackage[backend=bibtex, style=numeric, sorting=ynt]{biblatex}
+\addbibresource{chapters/bibliography.bib}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+
+\usepackage{setspace}
+\onehalfspacing
+
+\sloppy
+
+\title{Ouroboros Consensus (\& stuff) easy peazy documentation}
+
+\setcounter{secnumdepth}{4}
+
+\begin{document}
+    \pagestyle{empty}
+
+    \input{chapters/cover}
+    \cleardoublepage
+
+    \pagenumbering{roman}
+    \pagestyle{plain}
+
+    \tableofcontents
+    \cleardoublepage
+    
+    \pagestyle{empty}
+    \cleardoublepage
+    
+    \pagestyle{plain}
+    \pagenumbering{arabic}
+
+    \input{chapters/chapter1.tex}
+    \cleardoublepage
+
+    \nocite{*}
+    \printbibliography
+\end{document}
