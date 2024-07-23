@@ -1,25 +1,33 @@
 \begin{titlepage}
-    \makeatletter
+    \newgeometry{hmargin=2.5cm,vmargin=2cm}
+        
+        \vspace*{\fill}
 
-    \vspace*{\stretch{0.5}}
+        \begin{center}
+            \makeatletter
 
-    \LARGE
-    \textbf{\@title}
+            \vspace*{\stretch{0.5}}
 
-    \vspace*{\stretch{0.1}}
+            \LARGE
+            \textbf{\@title}
+            \smallskip
 
-    \text{by}
+            \textnormal{by}
 
-    \vspace*{\stretch{0.1}}
-    
-    \textsl{Harmonic Laboratories}
+            \smallskip
+            \textsl{\@author}
+            \makeatother
+        \end{center}
+        
 
-    \begin{figure}
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-            \includegraphics[width=\textwidth]{assets/hlabs_logo}
-        \end{subfigure}
-    \end{figure}
+        \begin{figure}[!h]
+            \centering
+            \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=\textwidth]{assets/hlabs_logo}
+            \end{subfigure}
+        \end{figure}
 
-    \makeatother
+        \vspace*{\fill}
+
+    \restoregeometry
 \end{titlepage}
