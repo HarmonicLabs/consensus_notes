@@ -1,18 +1,26 @@
 \documentclass{report}
 
+\usepackage{csquotes}
 \usepackage{enumitem}
-\usepackage[
-    a4paper,
-    top=2cm,bottom=2cm,
-    outer=2cm,inner=3cm,
-    includeheadfoot
-]{geometry}
+\usepackage[a4paper, top=2cm, bottom=2cm, outer=2cm, inner=3cm, includeheadfoot]{geometry}
 \usepackage{graphicx}
 \usepackage{minted}
 \usepackage{subcaption}
+\usepackage{hyperref}
 
 \usepackage[english]{babel}
 \selectlanguage{english}
+
+% to change Table of Contents name
+% \addto\captionsenglish{
+%   \renewcommand{\contentsname}
+%     {Index}
+% }
+
+\usepackage[xindy]{glossaries}
+\renewcommand{\glstextformat}[1]{\textcolor{blue}{#1}}
+\input{chapters/glossary}
+\makenoidxglossaries
 
 \usepackage[backend=bibtex, style=numeric, sorting=ynt]{biblatex}
 \addbibresource{chapters/bibliography.bib}
@@ -25,32 +33,27 @@
 
 \sloppy
 
-\title{Ouroboros Consensus (easy peazy) Documentation Resume}
+\title{Ouroboros Consensus (easy peazy) Documentation Summary}
 \author{Harmonic Laboratories}
 
 \setcounter{secnumdepth}{4}
 
 \begin{document}
-    \pagestyle{empty}
+    \pagenumbering{gobble}  % switchs off page numbering
 
-    \input{chapters/cover}
-    \cleardoublepage
+    \input{chapters/cover}  % shows front cover
 
-    \pagenumbering{roman}
-    \pagestyle{plain}
+    \tableofcontents        % shows chapters index
+    \clearpage              % idk but without this page numbering breaks
 
-    \tableofcontents
-    \cleardoublepage
-    
-    \pagestyle{empty}
-    \cleardoublepage
-    
-    \pagestyle{plain}
-    \pagenumbering{arabic}
+    \pagenumbering{arabic}  % turns on page numbering (and sets it to arabic numbers)
 
     \input{chapters/chapter1.tex}
-    \cleardoublepage
 
+    \input{chapters/chapter2.tex}
+
+    \printnoidxglossaries   % shows glossary
+    \pagenumbering{gobble}  % makes page numbers disappear since glossary page
     \nocite{*}
-    \printbibliography
+    \printbibliography      % shows bibliography
 \end{document}
