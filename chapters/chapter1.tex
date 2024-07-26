@@ -16,7 +16,7 @@ industry. As each phase progresses, Cardano moves closer to its goal of
 becoming a leading global blockchain platform capable of supporting a wide 
 range of decentralized applications and services.
 
-\vspace{0.5cm}
+\vspace{0.2cm}
 
 \subsection{Byron (Foundation)}
 
@@ -50,7 +50,7 @@ range of decentralized applications and services.
 The Byron phase established the foundation of the Cardano blockchain, ensuring 
 the network was secure, reliable, and capable of supporting further developments.
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 
 \subsection{Shelley (Decentralization)}
 
@@ -77,7 +77,7 @@ the network was secure, reliable, and capable of supporting further developments
 Shelley transitioned Cardano from a federated platform to a decentralized one, 
 increasing community participation and establishing a distributed governance model.
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 
 \subsection{Goguen (Smart Contracts)}
 
@@ -107,7 +107,7 @@ increasing community participation and establishing a distributed governance mod
 The Goguen phase made Cardano a versatile and competitive platform for developing DApps 
 and smart contracts, expanding the network's use cases.
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 
 \subsection{Basho (Scaling)}
 
@@ -131,7 +131,7 @@ and smart contracts, expanding the network's use cases.
 The Basho phase laid the groundwork for a more efficient and scalable network, ensuring 
 that Cardano can support a wide range of applications and an increasing number of users.
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 
 \subsection{Voltaire (Governance)}
 
@@ -165,7 +165,7 @@ Cardano's blockchain. It represents the complete system that records all transac
 smart contracts executed on the Cardano network, ensuring their security, transparency, 
 and immutability.
 
-\vspace{0.5cm}
+\vspace{0.2cm}
 
 \subsection{Eras}
 
@@ -237,19 +237,112 @@ with a different hard fork, hence there were several ledger eras:
     \item Alonzo: introduced smart contract support.
 \end{itemize}
 
-\vspace{0.5cm}
+\vspace{0.2cm}
 
 \subsubsection{Bubbage era}
 
 The Babbage ledger era introduced such features as inline datums, reference scripts, and 
 reference inputs.
 
+\vspace{0.5cm}
+
 \section{Nodes}
 
-\subsection{Structure}
+The Cardano node is the top-level component within the network. Network nodes connect to 
+each other within the networking layer, which is the driving force for delivering 
+information exchange requirements. This includes new block diffusion and transaction 
+information for establishing a better data flow. Cardano nodes maintain connections 
+with peers that have been chosen via a custom peer-selection process. By running a 
+Cardano node, you are participating in and contributing to the network.
 
-\subsection{Interactions}
+\vspace{0.2cm}
 
-\section{Transactions}
+\noindent
+Stake pools use the Cardano node to validate how the pool interacts with the network 
+and are responsible for transaction processing and block production. They act as reliable 
+server nodes that hold and maintain the combined stake of various stakeholders in a 
+single entity.
 
-\subsection{UTxO}
+\vspace{0.2cm}
+
+\subsection{Stake Pools}
+
+A stake pool is a reliable server node that focuses on ledger 
+maintenance and holds the combined resources - the 'stake' - of 
+various stakeholders in a single entity. Stake pools are responsible 
+for processing transactions that will be placed in the ledger, as 
+well as producing new blocks. Stake pools are at the core of Ouroboros, 
+Cardano's proof-of-stake protocol.
+
+\vspace{0.2cm}
+
+\noindent
+To be secure, Ouroboros requires a good number of stakeholders to be 
+online and maintain sufficiently good network connectivity at any given 
+time. This is why Ouroboros relies on stake pools, entities that are 
+committed to running the protocol 24/7, on behalf of the contributing 
+stakeholders that hold ADA. The idea is that these resource holders can 
+bring their resources (their stake) together and form a pool, where 
+typically one holder is the operator of the pool and the rest are 
+delegators.
+
+\vspace{0.5cm}
+
+\section{Blocks}
+
+The goal of blockchain technology is the production of an 
+independently-verifiable and cryptographically-linked chain of records 
+(blocks). A network of block producers works to collectively advance the 
+blockchain. A consensus protocol (Ouroboros) provides transparency and 
+decides which candidate blocks should be used to extend the chain.
+
+\vspace{0.2cm}
+
+\noindent
+Submitted valid transactions might be included in any new block. 
+A block is cryptographically signed by its producer and linked to the 
+previous block in the chain. This makes it impossible to delete 
+transactions from a block, alter the order of the blocks, remove a block 
+from the chain or insert a new block into the chain without alerting all 
+the network participants. This ensures the integrity and transparency of 
+the blockchain expansion.
+
+\vspace{0.2cm}
+
+\subsection{Slots and Transactions}
+
+The Cardano blockchain uses the Ouroboros Praos protocol to facilitate 
+consensus on the chain. Ouroboros Praos divides time into epochs. Each 
+Cardano epoch consists of a number of slots, where each slot lasts for 
+one second. A Cardano epoch currently includes 432,000 slots (5 days). 
+In any slot, zero or more block-producing nodes might be nominated to 
+be the slot leader. On average, one node is expected to be nominated 
+every 20 seconds, for a total of 21,600 nominations per epoch. If 
+randomly elected slot leaders produce blocks, one of them will be added 
+to the chain. Other candidate blocks will be discarded.
+
+\vspace{0.5cm}
+
+\subsubsection{Slot leader election}
+
+The Cardano network consists of a number of stake pools that control 
+the aggregated stake of their owners and other stakeholders, also known 
+as delegators. Slot leaders are randomly elected from among the stake 
+pools. The more stake a pool controls, the greater the chance it has 
+of being elected as a slot leader to produce a new block that is accepted 
+into the blockchain. This is the basic concept of proof of stake (PoS). 
+To maintain a level playing field, and prevent a situation where a small 
+number of very large pools control the majority of stake, Cardano has an 
+incentive system that discourages delegation to pools that already control 
+a large portion of the total stake.
+
+\vspace{0.5cm}
+
+\subsubsection{Transaction validation}
+
+When validating a transaction, a slot leader needs to ensure that the 
+sender has included enough funds to pay for that transaction and must 
+also ensure that the transaction's parameters are met. Assuming that 
+the transaction meets all these requirements, the slot leader will 
+record it as a part of a new block, which will then be connected to 
+other blocks in the chain.
