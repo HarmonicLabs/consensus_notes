@@ -13,6 +13,9 @@ main-blx.bib
 *.xdv
 *.run.xml
 *.bbl
+*.xdy
+*.blg
+*.out
 
 # Logs
 logs
