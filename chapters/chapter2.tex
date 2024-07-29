@@ -1,14 +1,157 @@
-\chapter{Ouroboros}
+\chapter{Consensus}
 
-AAAAAA
+Consensus is the process of reaching a majority opinion by everyone 
+involved in running the blockchain. An agreement must be made on which 
+blocks to produce, which chain to adopt and to determine the single 
+state of the network. The consensus protocol determines how individual 
+nodes assess the current state of the ledger system and reach a 
+consensus.
 
-\section{What is it}
+\vspace{0.2cm}
 
-BBBBBB
+\noindent
+Blockchains create consensus by allowing participants to bundle 
+transactions that others have submitted to the system in blocks, and add 
+them to their chain (sequence of blocks). Determining who is allowed to 
+produce a block when, and what to do in case of conflicts, (such as two 
+participants adding different blocks at the same point of the chain), is 
+the purpose of the different consensus protocols.
 
-\subsection{Consensus}
+\vspace{0.2cm}
 
+\noindent
+The protocol has three main responsibilities:
 \begin{itemize}
-    \item CCCCCC
-    \item DDDDDD
+    \item perform a leader check and decide if a block should be produced;
+    \item handle chain selection;
+    \item verify produced blocks.
 \end{itemize}
+
+\section{Ouroboros}
+
+Cardano runs on the Ouroboros \gls{Proof-of-Stake} consensus protocol.
+
+\vspace{0.2cm}
+
+\noindent
+Ouroboros divides time on Cardano into epochs where each epoch is divided 
+into slots. A slot is a short period of time in which a block can be 
+created. Grouping slots into epochs is central to adjusting the leader 
+election process to the dynamically changing stake distribution.
+
+\vspace{0.2cm}
+
+\noindent
+A slot leader is elected for each slot, who is responsible for adding a 
+block to the chain and passing it to the next slot leader. To protect 
+against adversarial attempts to subvert the protocol, each new slot leader 
+is required to consider the last few blocks of the received chain as 
+transient: only the chain that precedes the prespecified number of transient 
+blocks is considered settled. This is also referred to as the settlement 
+delay. Among other things, this means that a stakeholder can go offline and 
+still be synced to the blockchain, so long as it's not for more than the 
+settlement delay.
+
+\vspace{0.2cm}
+
+\noindent
+Within the Ouroboros protocol, each network node stores a copy of the 
+transaction mempool (where transactions are added if they are consistent 
+with existing transactions) and the blockchain. The locally stored blockchain 
+is replaced when the node becomes aware of an alternative, longer valid chain.
+
+\vspace{0.2cm}
+
+\subsection{Versions}
+
+\subsubsection{Classic}
+
+The first implementation of Ouroboros achieved three major milestones:
+\begin{itemize}
+    \item the foundation for an energy-efficient protocol to rival proof of work;
+    \item the introduction of the mathematical framework to analyze proof of stake;
+    \item the implementation of a novel incentive mechanism to reward participants 
+        in a proof-of-stake setting.
+\end{itemize}
+
+\noindent
+But what really set Ouroboros apart from other blockchain protocols (specifically, 
+proof-of-stake protocols), was its ability to generate unbiased randomness in the 
+protocol's leader selection algorithm, and the subsequent security assurances that 
+provided. Randomness prevents the formation of patterns, which is critical for 
+maintaining the protocol's security. Ouroboros was the first blockchain protocol 
+developed with this type of rigorous security analysis.
+
+\vspace{0.5cm}
+
+\subsubsection{BFT}
+
+Ouroboros Byzantine Fault Tolerance (BFT) was the protocol's second implementation, 
+used during the Byron update (transition from the old Cardano codebase to the 
+new). The second instance of the protocol prepared Cardano for the decentralization 
+that came with the Shelley release.
+
+\vspace{0.2cm}
+
+\noindent
+Ouroboros BFT enabled synchronous communication between a network of federated 
+servers (the blockchain) providing ledger consensus in a simpler and more 
+deterministic manner.
+
+\vspace{0.5cm}
+
+\subsubsection{Praos}
+
+Ouroboros Praos introduced substantial security and scalability improvements to 
+the Ouroboros Classic implementation. Praos processes transaction blocks by dividing 
+chains into slots, which are aggregated into epochs. But unlike Ouroboros Classic, 
+Praos is analyzed in a semi-synchronous setting and is secure against adaptive 
+attackers, using private-leader selection and forward-secure, key-evolving signatures 
+to ensure that a strong adversary cannot predict the next slot leader and launch 
+a focused attack (such as a DDoS attack).
+
+\vspace{0.5cm}
+
+\subsubsection{Genesis}
+
+The fourth iteration of Ouroboros, Genesis, further improves upon Ouroboros 
+Praos by adding a novel chain selection rule that enables parties to bootstrap 
+from a genesis block without the need for trusted checkpoints or assumptions 
+about past availability. The Genesis paper also provides proof of the protocol's 
+Universal Composability, which demonstrates that the protocol can be composed 
+with other protocols in arbitrary configurations in a real-world setting, without 
+losing its security properties.
+
+\vspace{0.5cm}
+
+\subsubsection{Crypsinous}
+
+Ouroboros Crypsinous equips Genesis with privacy-preserving properties. It is 
+the first formally analyzed privacy-preserving proof-of-stake blockchain protocol, 
+which achieves security against adaptive attacks while maintaining strong 
+privacy guarantees by introducing a new coin evolution technique relying on 
+Snarks and key-private forward-secure encryption. Crypsinous isn't currently 
+planned to be implemented on Cardano, but it can be used by other chains for 
+increased privacy-preserving settings.
+
+\vspace{0.5cm}
+
+\subsubsection{Chronos}
+
+Chronos achieves two goals: 
+\begin{itemize}
+    \item it shows how blockchain protocols can synchronize clocks securely via 
+        a novel time synchronization mechanism and thereby become independent of 
+        external time services;
+    \item it provides a cryptographically secure source of time to other protocols.
+\end{itemize}
+In short, Chronos makes the ledger more resistant to attacks that target time 
+information.
+
+\vspace{0.2cm}
+
+\noindent
+From an application point of view, Chronos can dramatically boost the resilience 
+of critical telecommunications, transport, and other IT infrastructures that require 
+the synchronization of local time to a unified network clock that has no single 
+point of failure.
